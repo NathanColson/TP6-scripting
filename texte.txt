@@ -1,0 +1,16 @@
+
+D‚termination de l'itin‚raire vers google.com [2a00:1450:400e:805::200e]
+avec un maximum de 30 sautsÿ:
+
+  1     7 ms     5 ms     5 ms  2a02:a03f:2db:3400:e4e9:47ff:fe0a:e947 
+  2    26 ms     7 ms     5 ms  mymodem [fdaa:bbcc:ddee:0:924d:4aff:fed2:9093] 
+  3     *        *        *     D‚lai d'attente de la demande d‚pass‚.
+  4     *        *        *     D‚lai d'attente de la demande d‚pass‚.
+  5     *        *        *     D‚lai d'attente de la demande d‚pass‚.
+  6     *        *        *     D‚lai d'attente de la demande d‚pass‚.
+  7    30 ms    19 ms    18 ms  2a02:a000:1:fffb::2 
+  8    23 ms    22 ms    39 ms  2001:4860:0:1::8acd 
+  9    39 ms    30 ms    38 ms  2001:4860:0:1::7191 
+ 10    32 ms    26 ms    21 ms  ams16s37-in-x0e.1e100.net [2a00:1450:400e:805::200e] 
+
+Itin‚raire d‚termin‚.
