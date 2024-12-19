@@ -1,6 +1,15 @@
 import argparse
 import subprocess
 import platform
+import re
+
+def extract_ips(output_line):
+    """
+    Extrait les adresses IP d'une ligne de sortie de tracert/traceroute.
+    """
+    ip_pattern = r'\b(?:\d{1,3}\.){3}\d{1,3}\b'  # Expression régulière pour matcher les adresses IPv4
+    match = re.findall(ip_pattern, output_line)
+    return match if match else None
 
 def traceroute(target, progressive, output_file):
     # Déterminer la commande selon le système d'exploitation
@@ -15,13 +24,18 @@ def traceroute(target, progressive, output_file):
             process = subprocess.Popen(traceroute_cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
             with process.stdout:
                 for line in iter(process.stdout.readline, ''):
-                    print(line.strip())  # Affichage progressif
-                    results.append(line.strip())
+                    ips = extract_ips(line)
+                    if ips:
+                        print("\n".join(ips))  # Affichage progressif des IPs
+                        results.extend(ips)
         else:
             # Mode complet avec subprocess.run
             result = subprocess.run(traceroute_cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-            results = result.stdout.splitlines()
-            print("\n".join(results))  # Affichage complet
+            for line in result.stdout.splitlines():
+                ips = extract_ips(line)
+                if ips:
+                    results.extend(ips)
+            print("\n".join(results))  # Affichage complet des IPs
 
         # Enregistrement dans un fichier si demandé
         if output_file:
